@@ -1,0 +1,46 @@
+
+
+  <ion-header>
+  <ion-toolbar>
+    <ion-title  color="success" >Create Job Post</ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.username.errors?.required">
+      Name is required.
+    </span>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.username.errors?.minlength">
+      Name should be min 2 chars long.
+    </span>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Job</ion-label>
+      <ion-input formControlName="job" type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.job.errors?.required">
+      Job is required.
+    </span>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.job.errors?.pattern">
+      Please provide valid job.
+    </span>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Price</ion-label>
+      <ion-input formControlName="cost" type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.cost.errors?.required">
+      Amount is required.
+    </span>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.cost.errors?.pattern">
+      Please provide valid amount.
+    </span>
+    
+    <ion-button type="submit" color="success" expand="block" (click) = "saveJob()" >Submit</ion-button>
+  </form>
+       
