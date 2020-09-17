@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title size="large" color="success" style="text-align:center">
+      Employ
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+  <ion-card-subtitle>
+    <ion-searchbar animated></ion-searchbar>
+  </ion-card-subtitle>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ng-container *ngIf="!jobs || jobs.length == 0"></ng-container>
+<ion-list>
+  <ion-card *ngFor="let item of jobs" button [routerLink] ="['job-discription']">
+      <ion-card-header> {{ item.job }} </ion-card-header> <ion-card-content>
+      <ion-avatar>
+        <img src="/Users/edwardreece/Documents/CS430/SchoolApp/Employ/src/app/photo/KAKDug5.jpg">
+      </ion-avatar>
+      <ion-card-title> {{ item.username }} </ion-card-title>
+      <ion-card-subtitle>{{ item.cost }} </ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+</ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+    <!-- fab placed to the bottom right -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="success" routerLink ="/create-job" routerDirection = "forward">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>
+
+ 
